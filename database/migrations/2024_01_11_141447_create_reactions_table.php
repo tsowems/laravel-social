@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId(column:'post_id')->constrained(table: 'posts');
             $table->string(column: 'type'); //like, dislike
-            $table->forignId(column: 'user_id')->constrained(table: 'user');
+            $table->foreignId(column: 'user_id')->constrained(table: 'users');
             $table->timestamp(column: 'created_at')->nullable();
         });
     }

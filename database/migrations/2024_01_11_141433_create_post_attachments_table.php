@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string(column: 'path', length:255);
             $table->string(column: 'mime', length:25); // image/png
             $table->integer(column: 'size'); //1000
-            $table->foreignId(column: 'created_by')->constrained(table: 'user');
+            $table->foreignId(column: 'created_by')->constrained(table: 'users');
             $table->timestamp(column:'created_at')->nullable();
         });
     }
