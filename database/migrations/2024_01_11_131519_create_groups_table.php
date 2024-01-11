@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->longText(column: 'body')->nullable();
+            $table->string( column: 'name', length: 255);
+            $table->string( column: 'cover_path', length: 1024)->nullable();
+            $table->string( column: 'thumbnail_path', length: 1024)->nullable();
+            $table->string(column:'slug', length: 255);
+            $table->boolean(column:'auto_approval')->default(value:true);
+            $table->string(column:'about')->nullable();
             $table->forignId(column: 'user_id')->constrained(table: 'user');
-            $table->forignId(column: 'group_id')->nullable()->constrained(table: 'group');
             $table->forignId(column: 'deleted_by')->nullable()->constrained(table: 'user');
             $table->timestamp(column: 'deleted_at')->nullable();
-            $table->string(column: 'created_by', length:255)->constrained(table: 'user');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('groups');
     }
 };
